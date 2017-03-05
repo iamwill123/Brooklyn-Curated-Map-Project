@@ -21,7 +21,7 @@ html, body {
 }
 .main-layout .mdl-layout__header .mdl-layout__drawer-button {
   color: rgba(0, 0, 0, 1);
-  top: 5px;
+  top: 3px;
 }
 .mdl-layout__header {
   min-height: 50px;
@@ -235,10 +235,26 @@ _:-ms-input-placeholder, :root .main-graph {
   margin: 4px 0;
 }
 .main-options .material-icons {
-  color: rgba(255, 255, 255, 0.89);
+  color: rgba(255, 255, 255, 1);
 }
 .mdl-button .material-icons {
   color: black;
+}
+
+i.material-icons {
+  -webkit-transition: 500ms;
+     -moz-transition: 500ms;
+      -ms-transition: 500ms;
+       -o-transition: 500ms;
+          transition: 500ms;
+}
+i.material-icons:hover {
+  -webkit-transition: 500ms;
+     -moz-transition: 500ms;
+      -ms-transition: 500ms;
+       -o-transition: 500ms;
+          transition: 500ms;
+  color: red;
 }
 .main-options .mdl-card__actions {
   height: 64px;
