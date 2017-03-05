@@ -298,10 +298,10 @@ i.material-icons:hover {
 /*Heading title*/
 .infoWindow-styling
   .venue-header {
-    font-family: 'BoogieNights', sans-serif;
+    /*font-family: 'BoogieNights', sans-serif;*/
     text-align: center;
-    font-size: 4.5vh;
-    padding: 0.5rem 0;
+    font-size: 2.5vh;
+    padding: 1rem 0;
     background-color: #333333;
     color: #eceff1;
   }
