@@ -8,17 +8,14 @@ var infoWindow = new google.maps.InfoWindow({
   maxHeight: 570
 });
 
-// JS slider
+// Javascript slider
 var slideIndex = 1;
-
 function plusDivs(n) {
   showDivs(slideIndex += n);
 }
-
 function currentDiv(n) {
   showDivs(slideIndex = n);
 }
-
 function showDivs(n) {
   var i;
   var x = document.getElementsByClassName("mySlides");
@@ -43,7 +40,6 @@ var ViewModel = function() {
   self.venueList = ko.observableArray([]);
 
 // Filtered Search
-
   // Marker Filter
   self.filteredVenueList = ko.observableArray([]);
   // List Filter
@@ -70,14 +66,14 @@ var ViewModel = function() {
         }
     });
 
-    //Tron styles
+    // Tron styles
     map.mapTypes.set('styled_tron', stylesTron);
     map.setMapTypeId('styled_tron');
-    //Vibrant styles
+    // Vibrant styles
     map.mapTypes.set('styled_vibrant', stylesVibrant);
     map.setMapTypeId('styled_vibrant');
 
-    // toggle traffic layer
+    // Toggle traffic layer
     document.getElementById('toggle-traffic').addEventListener('click', function() {
       toggleTraffic();
     });
@@ -161,7 +157,7 @@ var ViewModel = function() {
     // Open the infoWindow at the marker location
     infoWindow.open(map, venue.marker());
 
-    //fade in infowindow
+    // Fade in infowindow
     var iw_container = $(".gm-style-iw").parent();
     iw_container.stop().hide();
     iw_container.fadeIn(1500);
@@ -171,10 +167,10 @@ var ViewModel = function() {
     map.setZoom(13);
     map.panBy(0, -250);
 
-    //Autocomplete for the search box
+    // Autocomplete for the search box
     var timeAutocomplete = new google.maps.places.Autocomplete(document.getElementById('search-text'));
 
-    //initialize Direction Service & Display
+    // Initialize Direction Service & Display
     var directionsService = new google.maps.DirectionsService;
     var directionsDisplay = new google.maps.DirectionsRenderer;
 
@@ -402,17 +398,13 @@ var ViewModel = function() {
   google.maps.event.addDomListener(infoWindow, 'domready', function() {
     // Reference to the DIV which receives the contents of the infowindow using jQuery
     var iwOuter = $('.gm-style-iw');
-    /* The DIV we want to change is above the .gm-style-iw DIV.
-    * So, we use jQuery and create a iwBackground variable,
-    * and took advantage of the existing reference to .gm-style-iw for the previous DIV with .prev().
-    */
     var iwBackground = iwOuter.prev();
     // Remove the background shadow DIV
     iwBackground.children(':nth-child(2)').css({'display' : 'none'});
     // Remove the white background DIV
     iwBackground.children(':nth-child(4)').css({'display' : 'none'});
     iwBackground.children(':nth-child(3)').find('div').children().css({'box-shadow': '#333333 0px 1px 6px', 'z-index' : '0', 'background-color' : '#333333'});
-    //Target the close button
+    // Target the close button
     var iwCloseBtn = iwOuter.next();
     // Apply the desired effect to the close button
     iwCloseBtn.css({
