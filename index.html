@@ -32,6 +32,9 @@
   <link rel="stylesheet" href="https://www.w3schools.com/lib/w3.css">
   <!-- custom style sheet -->
   <link rel="stylesheet" href="css/styles.css">
+  <!-- Google Maps -->
+  <script async src="https://maps.googleapis.com/maps/api/js?&libraries=places&key=AIzaSyCy8Llw3Mlcq_qv-KEOMxOogvWs2IXeGxo&callback=googleSuccess" onerror="googleError()"></script>
+
 </head>
 <body>
   <div class="main-layout mdl-layout mdl-js-layout mdl-layout--fixed-drawer mdl-layout--fixed-header">
@@ -108,8 +111,7 @@
   <script src="js/lib/jQuery.js"></script>
   <script src="js/lib/knockout-3.2.0.js"></script>
   <script src="js/lib/oauth-signature.js"></script>
-  <!-- Google Maps -->
-  <script src="https://maps.googleapis.com/maps/api/js?&libraries=places&key=AIzaSyCy8Llw3Mlcq_qv-KEOMxOogvWs2IXeGxo&v=3"></script>
+
   <!-- Custom scripts -->
   <script src="js/model.js"></script>
   <script src="js/app.js"></script>

@@ -1,12 +1,33 @@
-// Initialize the map
-var map;
+var map, infoWindow;
 
-// Initialize the default infoWindow
-var infoWindow = new google.maps.InfoWindow({
-  // default content
-  maxWidth: 400,
-  maxHeight: 570
-});
+// API is working
+function googleSuccess() {
+  console.log("Google maps api loaded");
+  // Initialize Google Maps
+  map = new google.maps.Map(document.getElementById('map'), {
+    center: {lat: 40.708116, lng: -73.957070}, // Williamsburg Brooklyn NYC
+    zoom: 12,
+    mapTypeControl: true,
+      mapTypeControlOptions: {
+        style: google.maps.MapTypeControlStyle.DROPDOWN_MENU,
+        position: google.maps.ControlPosition.TOP_RIGHT,
+        mapTypeIds: ['roadmap', 'terrain', 'styled_tron', 'styled_vibrant']
+      }
+  });
+
+  infoWindow = new google.maps.InfoWindow({
+    maxWidth: 400,
+    maxHeight: 570
+  });
+
+  // Start your engines!
+  ko.applyBindings( new ViewModel() );
+}
+function googleError() {
+  console.log("Google maps api failed to load");
+  var errorContent = "<h1> Hello User! </h1>" + "<h2>The map did not load properly, please refresh and try again.</h2>";
+  $('#map').html(errorContent);
+}
 
 // Javascript slider
 var slideIndex = 1;
@@ -43,7 +64,7 @@ var ViewModel = function() {
   // Marker Filter
   self.filteredVenueList = ko.observableArray([]);
   // List Filter
-  self.filter = ko.observable("");
+  self.filter = ko.observable('');
 
   // Create the google map zoomed in on Williamsburg BK upon initialization
   self.initialize = function() {
@@ -53,18 +74,6 @@ var ViewModel = function() {
     var stylesVibrant = new google.maps.StyledMapType([{featureType:"water",stylers:[{color:"#19a0d8"}]},{featureType:"administrative",elementType:"labels.text.stroke",stylers:[{color:"#ffffff"},{weight:6}]},{featureType:"administrative",elementType:"labels.text.fill",stylers:[{color:"#e85113"}]},{featureType:"road.highway",elementType:"geometry.stroke",stylers:[{color:"#efe9e4"},{lightness:-40}]},{featureType:"transit.station",stylers:[{weight:9},{hue:"#e85113"}]},{featureType:"road.highway",elementType:"labels.icon",stylers:[{visibility:"off"}]},{featureType:"water",elementType:"labels.text.stroke",stylers:[{lightness:100}]},{featureType:"water",elementType:"labels.text.fill",stylers:[{lightness:-100}]},{featureType:"poi",elementType:"geometry",stylers:[{visibility:"on"},{color:"#f0e4d3"}]},{featureType:"road.highway",elementType:"geometry.fill",stylers:[{color:"#efe9e4"},{lightness:-25}]}],{name:'Vibrant'});
     //Traffic layer
     var trafficLayer = new google.maps.TrafficLayer();
-
-    // Initialize Google Maps
-    map = new google.maps.Map(document.getElementById('map'), {
-      center: {lat: 40.708116, lng: -73.957070}, // Williamsburg Brooklyn NYC
-      zoom: 12,
-      mapTypeControl: true,
-        mapTypeControlOptions: {
-          style: google.maps.MapTypeControlStyle.DROPDOWN_MENU,
-          position: google.maps.ControlPosition.TOP_RIGHT,
-          mapTypeIds: ['roadmap', 'terrain', 'styled_tron', 'styled_vibrant']
-        }
-    });
 
     // Tron styles
     map.mapTypes.set('styled_tron', stylesTron);
@@ -387,9 +396,9 @@ var ViewModel = function() {
   });
 
   // Responsive Google Maps: Re-center google maps to browser size changes
-  google.maps.event.addDomListener(window, "resize", function() {
+  google.maps.event.addDomListener(window, 'resize', function() {
     var center = map.getCenter();
-    google.maps.event.trigger(map, "resize");
+    google.maps.event.trigger(map, 'resize');
     map.setCenter(center);
   });
 
@@ -498,5 +507,3 @@ ko.bindingHandlers.fadein = {
   }
 };
 
-// Start your engines!
-ko.applyBindings( new ViewModel() );
