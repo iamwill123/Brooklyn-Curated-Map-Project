@@ -20,9 +20,11 @@ function googleSuccess() {
     maxHeight: 570
   });
 
-  // Start your engines!
+  // Start your engines
   ko.applyBindings( new ViewModel() );
 }
+
+// Error handling
 function googleError() {
   console.log("Google maps api failed to load");
   var errorContent = "<h1> Hello User! </h1>" + "<h2>The map did not load properly, please refresh and try again.</h2>";
