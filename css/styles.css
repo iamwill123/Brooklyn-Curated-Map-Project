@@ -583,7 +583,7 @@ i.material-icons:hover {
 }
 @media screen and (max-width: 414px) {
   .w3-left, .w3-right {
-    margin-top: -5rem;
+    margin-top: -3.7rem;
     -moz-transition: 500ms;
        -ms-transition: 500ms;
         -o-transition: 500ms;
@@ -606,7 +606,7 @@ i.material-icons:hover {
 @media screen and (max-width: 414px) {
 .infoWindow-styling
   .content-fill .image-gallery img {
-    height: 150px;
+    height: 120px;
     width: 320px;
     object-fit: contain;
     -moz-transition: 500ms;
