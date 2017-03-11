@@ -376,6 +376,13 @@ i.material-icons:hover {
     line-height: 1.3rem;
     font-weight: 500;
   }
+@media screen and (max-width: 414px) {
+.infoWindow-styling
+  .content-right p {
+    font-size: 0.7rem;
+  }
+}
+
 .infoWindow-styling
   .yelp-rating-image {
     padding: 0.1rem 0 0.6rem 0;
