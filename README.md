@@ -1,7 +1,7 @@
 # Brooklyn Curated - Neighborhood Map Project
 ## Purpose: Udacity's Front End Web Development Nanodegree
 
-**Live** [Demo] (https://iamwill123.github.io/Brooklyn-Curated-Map-Project/)
+**Live** [Demo](https://iamwill123.github.io/Brooklyn-Curated-Map-Project/)
 
 ### Overview
 A map of curated Brooklyn hotspots I have either visited or want to visit in Brooklyn NYC (Mainly Williamsburg area).
@@ -50,10 +50,10 @@ The toughest obstacles along the way was to figure out how to encorporate a func
 - A directions panel that activates when the directions api is used.
 - Use CSS or JS to calculate a reasonable distance between the header bar and infowindow.
 
-#### References:
-[Yelp API] (https://www.yelp.com/developers/documentation/v2/authentication)
-[Udacity Google Maps API course] (https://www.udacity.com/course/google-maps-apis--ud864)
-[KnockoutJS] (http://knockoutjs.com/)
-[Knockout PDF] (http://files.cnblogs.com/files/artech/knockout.pdf)
+#### References
+- [Yelp API](https://www.yelp.com/developers/documentation/v2/authentication)
+- [Udacity Google Maps API course](https://www.udacity.com/course/google-maps-apis--ud864)
+- [KnockoutJS](http://knockoutjs.com/)
+- [Knockout PDF](http://files.cnblogs.com/files/artech/knockout.pdf)
 
 
