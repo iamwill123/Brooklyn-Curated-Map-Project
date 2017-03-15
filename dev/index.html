@@ -4,25 +4,25 @@
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="author" content="William Pei Yuan">
-  <meta name="keywords" content="brooklyn, new york, NYC, nightlife, events, yelp, googlemaps, api, williamsburg, web development, data">
+  <meta name="keywords" content="brooklyn curated, bklyn curated, bk curated, brooklyn nightlife, brooklyn travel, bklyn hotspots, brooklyn curated hotspots, new york, NYC, nightlife, events, yelp, googlemaps, api, williamsburg, web development, data">
   <meta name="description" content="This is a neighborhood project using knockout.js, google maps api, yelp api, and material design lite to showcase specifically curated venues in Brooklyn, mainly in the area of Williamsburg">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0">
 
   <title> NYC - Brooklyn Curated</title>
 
   <!-- Safari iOS & Chrome on Android icon sizes -->
-  <link href="img/apple-touch-icon.png" rel="apple-touch-icon" sizes="120x120" />
-  <link href="img/apple-touch-icon-152x152.png" rel="apple-touch-icon" sizes="152x152" />
-  <link href="img/apple-touch-icon-167x167.png" rel="apple-touch-icon" sizes="167x167" />
-  <link href="img/apple-touch-icon-180x180.png" rel="apple-touch-icon" sizes="180x180" />
-  <link href="img/icon-hires.png" rel="icon" sizes="192x192" />
-  <link href="img/icon-normal.png" rel="icon" sizes="128x128" />
+  <link href="../img/apple-touch-icon.png" rel="apple-touch-icon" sizes="120x120" />
+  <link href="../img/apple-touch-icon-152x152.png" rel="apple-touch-icon" sizes="152x152" />
+  <link href="../img/apple-touch-icon-167x167.png" rel="apple-touch-icon" sizes="167x167" />
+  <link href="../img/apple-touch-icon-180x180.png" rel="apple-touch-icon" sizes="180x180" />
+  <link href="../img/icon-hires.png" rel="icon" sizes="192x192" />
+  <link href="../img/icon-normal.png" rel="icon" sizes="128x128" />
 
   <!-- Tile icon for Win8 (144x144 + tile color) -->
   <meta name="msapplication-TileImage" content="img/ms-touch-icon-144x144-precomposed.png">
   <meta name="msapplication-TileColor" content="#3372DF">
 
-  <link rel="shortcut icon" href="img/favicon.png">
+  <link rel="shortcut icon" href="../img/favicon.png">
 
   <!-- Material Design CDN-->
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:regular,bold,italic,thin,light,bolditalic,black,medium&amp;lang=en">
@@ -31,7 +31,17 @@
   <!-- w3 library  -->
   <link rel="stylesheet" href="https://www.w3schools.com/lib/w3.css">
   <!-- custom style sheet -->
-  <link rel="stylesheet" href="css/styles.min.css">
+  <link rel="stylesheet" href="css/styles.css">
+  <!-- Google Analytics -->
+  <script>
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+    ga('create', 'UA-93509522-1', 'auto');
+    ga('send', 'pageview');
+  </script>
 </head>
 <body>
   <div class="main-layout mdl-layout mdl-js-layout mdl-layout--fixed-drawer mdl-layout--fixed-header">
@@ -45,7 +55,7 @@
                   <i class="material-icons">search</i>
                 </label>
                 <div class="mdl-textfield__expandable-holder">
-                  <input data-bind="fadein:1000, textInput: filter, value: filter, valueUpdate: 'afterkeydown'" class="mdl-textfield__input" type="text" id="search" placeholder="Where to?" id="search" name="sample">
+                  <input data-bind="fadein:1000, textInput: filter, value: filter" class="mdl-textfield__input" type="text" placeholder="Where to?" id="search" name="sample">
                   <label class="mdl-textfield__label" for="search" ></label>
                 </div>
               </div>
@@ -65,9 +75,9 @@
       <!-- Search/List Area -->
       <div class="main-drawer mdl-layout__drawer mdl-color--blue-grey-900 mdl-color-text--blue-grey-50">
         <header class="main-drawer-header">
-          <img src="img/headshotTrans.png" class="main-avatar">
+          <img src="../img/headshotTrans.png" class="main-avatar">
           <div class="main-avatar-dropdown">
-            <span>your@email.com</span>
+            <a href="http://www.iamwill.us/" target="_blank">will@iamwill.us</a>
             <div class="mdl-layout-spacer"></div>
             <button id="accbtn" class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon">
               <i class="material-icons" role="presentation">arrow_drop_down</i>
@@ -93,10 +103,11 @@
         <div data-bind="fadein:1000">
           <a class="toggle-traffic" id="toggle-traffic">Toggle Traffic</a>
         </div>
+
     </div>
 
     <!-- Google Maps -->
-    <main id="map" class="mdl-layout__content mdl-color--grey-100"">
+    <main id="map" class="mdl-layout__content mdl-color--grey-100">
       <div class="mdl-grid main-content">
       </div>
     </main>
@@ -105,14 +116,16 @@
 
   <!-- Material Lite Design -->
   <script src="https://code.getmdl.io/1.3.0/material.min.js"></script>
-  <script src="js/lib/jQuery.min.js"></script>
-  <script src="js/lib/knockout-3.2.0.min.js"></script>
-  <script src="js/lib/oauth-signature.min.js"></script>
-  <!-- Google Maps -->
-  <script src="https://maps.googleapis.com/maps/api/js?&libraries=places&key=AIzaSyCy8Llw3Mlcq_qv-KEOMxOogvWs2IXeGxo&v=3"></script>
+  <script src="../lib/jQuery.min.js"></script>
+  <script src="../lib/knockout-3.2.0.min.js"></script>
+  <script src="../lib/oauth-signature.min.js"></script>
+
   <!-- Custom scripts -->
-  <script src="js/model.min.js"></script>
-  <script src="js/app.min.js"></script>
+  <script src="js/model.js"></script>
+  <script src="js/app.js"></script>
+
+  <!-- Google Maps -->
+  <script src="https://maps.googleapis.com/maps/api/js?&libraries=places&key=AIzaSyCy8Llw3Mlcq_qv-KEOMxOogvWs2IXeGxo&callback=initMaps" onerror="mapsErrorHandler()" async defer></script>
 
 </body>
 </html>

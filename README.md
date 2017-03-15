@@ -1,7 +1,10 @@
-# Brooklyn Curated - Neighborhood Map Project
-## Purpose: Udacity's Front End Web Development Nanodegree
+# Neighborhood Map Project: Brooklyn Curated
+### Purpose: Udacity's Front End Web Development Nanodegree
 
-**Live** [Demo](https://iamwill123.github.io/Brooklyn-Curated-Map-Project/)
+**Live** [Demo](https://iamwill123.github.io/Brooklyn-Curated-Map-Project/) for this project. (no longer actively working on new features)
+
+**Live** [Site](https://brooklyn-curated.netlify.com/) for continuing new features hosted on Netlify and git version control.
+
 
 ### Overview
 A map of curated Brooklyn hotspots I have either visited or want to visit in Brooklyn NYC (Mainly Williamsburg area).

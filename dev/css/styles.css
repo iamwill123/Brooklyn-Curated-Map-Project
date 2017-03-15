@@ -6,7 +6,8 @@
 /*
     Customize Material Design Lite
 */
-html, body {
+html,
+body {
   font-family: 'Roboto', 'Helvetica', sans-serif;
   height: 100%;
   margin: 0;
@@ -16,19 +17,19 @@ html, body {
   width: 48px;
   height: 48px;
   border-radius: 24px;
-  background: url(../img/geoRed.jpg) no-repeat center center;
+  background: url(../../img/geoRed.jpg) no-repeat center center;
 
 }
 .main-layout .mdl-layout__header .mdl-layout__drawer-button {
   color: rgba(0, 0, 0, 1);
-  top: 5px;
+  top: 3px;
 }
 .mdl-layout__header {
   min-height: 50px;
 }
 .mdl-layout__header-row {
   height: 50px;
-  background: url(../img/vintage-new-york-brooklyn-bridge-banner.jpg) no-repeat center center;
+  background: url(../../img/vintage-new-york-brooklyn-bridge-banner.jpg) no-repeat center center;
   background-size: cover;
 }
 .mdl-layout__header-row .mdl-layout-title {
@@ -40,14 +41,26 @@ html, body {
 @media screen and (max-width: 550px) {
   .mdl-layout__header-row .mdl-layout-title {
     font-size: 30px;
+    -moz-transition: 500ms;
+       -ms-transition: 500ms;
+        -o-transition: 500ms;
+           transition: 500ms;
   }
 }
 @media screen and (max-width: 414px) {
   .mdl-layout__header-row .mdl-layout-title {
     font-size: 25px;
+    -moz-transition: 500ms;
+       -ms-transition: 500ms;
+        -o-transition: 500ms;
+           transition: 500ms;
   }
   .mdl-layout__header-row {
     padding: 0 10px 0 55px;
+    -moz-transition: 500ms;
+       -ms-transition: 500ms;
+        -o-transition: 500ms;
+           transition: 500ms;
   }
 }
 
@@ -235,10 +248,26 @@ _:-ms-input-placeholder, :root .main-graph {
   margin: 4px 0;
 }
 .main-options .material-icons {
-  color: rgba(255, 255, 255, 0.89);
+  color: rgba(255, 255, 255, 1);
 }
 .mdl-button .material-icons {
   color: black;
+}
+
+i.material-icons {
+  -webkit-transition: 500ms;
+     -moz-transition: 500ms;
+      -ms-transition: 500ms;
+       -o-transition: 500ms;
+          transition: 500ms;
+}
+i.material-icons:hover {
+  -webkit-transition: 500ms;
+     -moz-transition: 500ms;
+      -ms-transition: 500ms;
+       -o-transition: 500ms;
+          transition: 500ms;
+  color: red;
 }
 .main-options .mdl-card__actions {
   height: 64px;
@@ -265,6 +294,15 @@ _:-ms-input-placeholder, :root .main-graph {
       -o-transition: 500ms;
          transition: 500ms;
 }
+@media screen and (max-width: 414px) {
+  .gm-style-iw {
+    width: 330px !important;
+    -moz-transition: 500ms;
+       -ms-transition: 500ms;
+        -o-transition: 500ms;
+           transition: 500ms;
+  }
+}
 
 /* Custom Styling for Info Window */
 .infoWindow-styling {
@@ -282,14 +320,23 @@ _:-ms-input-placeholder, :root .main-graph {
 /*Heading title*/
 .infoWindow-styling
   .venue-header {
-    font-family: 'BoogieNights', sans-serif;
+    /*font-family: 'BoogieNights', sans-serif;*/
     text-align: center;
-    font-size: 4.5vh;
+    font-size: 18px;
     padding: 0.5rem 0;
     background-color: #333333;
     color: #eceff1;
   }
-
+@media screen and (max-width: 414px) {
+.infoWindow-styling
+  .venue-header {
+    font-size: 15px;
+    -moz-transition: 500ms;
+       -ms-transition: 500ms;
+        -o-transition: 500ms;
+           transition: 500ms;
+  }
+}
 /*Left side*/
 .infoWindow-styling
   .content-left {
@@ -330,6 +377,13 @@ _:-ms-input-placeholder, :root .main-graph {
     line-height: 1.3rem;
     font-weight: 500;
   }
+@media screen and (max-width: 414px) {
+.infoWindow-styling
+  .content-right p {
+    font-size: 0.7rem;
+  }
+}
+
 .infoWindow-styling
   .yelp-rating-image {
     padding: 0.1rem 0 0.6rem 0;
@@ -444,6 +498,17 @@ _:-ms-input-placeholder, :root .main-graph {
     height: 24px;
   }
 
+@media screen and (max-width: 414px) {
+.infoWindow-styling .google-directions #search-text {
+    width: 230px;
+    -moz-transition: 500ms;
+       -ms-transition: 500ms;
+        -o-transition: 500ms;
+           transition: 500ms;
+  }
+}
+
+
 /*Go button*/
 /*.infoWindow-styling
   .google-directions #search-button {
@@ -499,6 +564,16 @@ _:-ms-input-placeholder, :root .main-graph {
     height: 54px;
   }
 
+@media screen and (max-width: 414px) {
+.infoWindow-styling
+  .content-fill p {
+    width: 330px;
+    -moz-transition: 500ms;
+       -ms-transition: 500ms;
+        -o-transition: 500ms;
+           transition: 500ms;
+  }
+}
 /*Google maps api to render a carosel */
 .w3-display-container {
   height: auto;
@@ -512,7 +587,16 @@ _:-ms-input-placeholder, :root .main-graph {
 .w3-left, .w3-right {
   color: rgba(255, 255, 255, 1);
   font-size: 1.7rem;
-  margin-top: -8rem;
+  margin-top: -6rem;
+}
+@media screen and (max-width: 414px) {
+  .w3-left, .w3-right {
+    margin-top: -3.7rem;
+    -moz-transition: 500ms;
+       -ms-transition: 500ms;
+        -o-transition: 500ms;
+           transition: 500ms;
+  }
 }
 .w3-left:hover, .w3-right:hover {
   color: rgba(48, 152, 151, 1);
@@ -523,10 +607,23 @@ _:-ms-input-placeholder, :root .main-graph {
   }
 .infoWindow-styling
   .content-fill .image-gallery img {
-    height: 250px;
+    height: 180px;
     width: 320px;
     object-fit: contain;
   }
+@media screen and (max-width: 414px) {
+.infoWindow-styling
+  .content-fill .image-gallery img {
+    height: 120px;
+    width: 320px;
+    object-fit: contain;
+    -moz-transition: 500ms;
+       -ms-transition: 500ms;
+        -o-transition: 500ms;
+           transition: 500ms;
+  }
+}
+
 .toggle-traffic {
   text-align: left;
   display: block;
@@ -549,6 +646,10 @@ _:-ms-input-placeholder, :root .main-graph {
   .mdl-layout__header .mdl-layout__drawer-button {
       margin: 0;
       background-color: transparent;
+      -moz-transition: 500ms;
+       -ms-transition: 500ms;
+        -o-transition: 500ms;
+           transition: 500ms;
   }
 }
 
