@@ -1,4 +1,5 @@
 
+'use strict';
 // Javascript slider
 // var slideIndex = 1;
 // function plusDivs(n) {
@@ -23,6 +24,67 @@
 //   dots[slideIndex-1].className += " w3-white";
 // }
 
+var map, infoWindow;
+
+// Create the google map zoomed in on Williamsburg BK upon initialization
+var initMaps = function() {
+  console.log("Google Maps Successfully loaded!");
+  // Initialize Google Maps
+  map = new google.maps.Map(document.getElementById('map'), {
+    center: {lat: 40.708116, lng: -73.957070}, // Williamsburg Brooklyn NYC
+    zoom: 12,
+    mapTypeControl: true,
+      mapTypeControlOptions: {
+        style: google.maps.MapTypeControlStyle.DROPDOWN_MENU,
+        position: google.maps.ControlPosition.TOP_RIGHT,
+        mapTypeIds: ['roadmap', 'terrain', 'styled_tron', 'styled_vibrant']
+      }
+  });
+
+  infoWindow = new google.maps.InfoWindow({
+    maxWidth: 400,
+    maxHeight: 570
+  });
+
+  // Custom Tron Style
+  var stylesTron = new google.maps.StyledMapType([{"featureType":"all","elementType":"labels","stylers":[{"visibility":"off"}]},{"featureType":"all","elementType":"labels.text.fill","stylers":[{"saturation":36},{"color":"#000000"},{"lightness":40}]},{"featureType":"all","elementType":"labels.text.stroke","stylers":[{"visibility":"off"},{"color":"#000000"},{"lightness":16}]},{"featureType":"all","elementType":"labels.icon","stylers":[{"visibility":"off"}]},{"featureType":"administrative","elementType":"geometry.fill","stylers":[{"color":"#000000"},{"lightness":20}]},{"featureType":"administrative","elementType":"geometry.stroke","stylers":[{"color":"#000000"},{"lightness":17},{"weight":1.2}]},{"featureType":"administrative","elementType":"labels","stylers":[{"visibility":"on"}]},{"featureType":"landscape","elementType":"geometry","stylers":[{"color":"#000000"},{"lightness":20}]},{"featureType":"landscape","elementType":"labels","stylers":[{"visibility":"off"}]},{"featureType":"landscape.man_made","elementType":"labels","stylers":[{"visibility":"off"}]},{"featureType":"landscape.natural","elementType":"labels","stylers":[{"visibility":"off"}]},{"featureType":"landscape.natural.landcover","elementType":"labels","stylers":[{"visibility":"off"}]},{"featureType":"landscape.natural.terrain","elementType":"labels","stylers":[{"visibility":"off"}]},{"featureType":"poi","elementType":"geometry","stylers":[{"color":"#000000"},{"lightness":21}]},{"featureType":"poi","elementType":"labels","stylers":[{"visibility":"off"}]},{"featureType":"road","elementType":"geometry","stylers":[{"color":"#00ffff"}]},{"featureType":"road","elementType":"labels","stylers":[{"visibility":"off"}]},{"featureType":"road.highway","elementType":"geometry","stylers":[{"color":"#00fbff"}]},{"featureType":"road.highway","elementType":"geometry.fill","stylers":[{"color":"#000000"},{"lightness":17}]},{"featureType":"road.highway","elementType":"geometry.stroke","stylers":[{"color":"#000000"},{"lightness":29},{"weight":0.2}]},{"featureType":"road.highway","elementType":"labels","stylers":[{"visibility":"off"}]},{"featureType":"road.highway.controlled_access","elementType":"labels","stylers":[{"visibility":"off"}]},{"featureType":"road.arterial","elementType":"geometry","stylers":[{"color":"#00fffb"},{"lightness":18}]},{"featureType":"road.arterial","elementType":"labels","stylers":[{"visibility":"off"}]},{"featureType":"road.local","elementType":"geometry","stylers":[{"color":"#00ffff"},{"lightness":16}]},{"featureType":"road.local","elementType":"labels","stylers":[{"visibility":"off"}]},{"featureType":"transit","elementType":"geometry","stylers":[{"color":"#000000"},{"lightness":19},{"visibility":"off"}]},{"featureType":"transit","elementType":"labels","stylers":[{"visibility":"off"}]},{"featureType":"transit.line","elementType":"geometry","stylers":[{"visibility":"off"}]},{"featureType":"transit.line","elementType":"labels","stylers":[{"visibility":"off"}]},{"featureType":"transit.station","elementType":"labels","stylers":[{"visibility":"on"}]},{"featureType":"water","elementType":"geometry","stylers":[{"color":"#000303"},{"lightness":17}]},{"featureType":"water","elementType":"labels","stylers":[{"visibility":"off"}]}],{name:'Tron'});
+  // Custom Vibrant Style
+  var stylesVibrant = new google.maps.StyledMapType([{featureType:"water",stylers:[{color:"#19a0d8"}]},{featureType:"administrative",elementType:"labels.text.stroke",stylers:[{color:"#ffffff"},{weight:6}]},{featureType:"administrative",elementType:"labels.text.fill",stylers:[{color:"#e85113"}]},{featureType:"road.highway",elementType:"geometry.stroke",stylers:[{color:"#efe9e4"},{lightness:-40}]},{featureType:"transit.station",stylers:[{weight:9},{hue:"#e85113"}]},{featureType:"road.highway",elementType:"labels.icon",stylers:[{visibility:"off"}]},{featureType:"water",elementType:"labels.text.stroke",stylers:[{lightness:100}]},{featureType:"water",elementType:"labels.text.fill",stylers:[{lightness:-100}]},{featureType:"poi",elementType:"geometry",stylers:[{visibility:"on"},{color:"#f0e4d3"}]},{featureType:"road.highway",elementType:"geometry.fill",stylers:[{color:"#efe9e4"},{lightness:-25}]}],{name:'Vibrant'});
+
+  // Tron styles
+  map.mapTypes.set('styled_tron', stylesTron);
+  map.setMapTypeId('styled_tron');
+  // Vibrant styles
+  map.mapTypes.set('styled_vibrant', stylesVibrant);
+  map.setMapTypeId('styled_vibrant');
+
+  var trafficLayer = new google.maps.TrafficLayer();
+
+  // Toggle traffic layer
+  document.getElementById('toggle-traffic').addEventListener('click', function() {
+    toggleTraffic();
+  });
+
+ var toggleTraffic = function() {
+    //Traffic layer
+    if (trafficLayer.getMap() == null) {
+      trafficLayer.setMap(map);
+    } else {
+      trafficLayer.setMap(null);
+    }
+  };
+   // Start your engines
+  ko.applyBindings( new ViewModel() );
+};
+
+// Error handling
+var mapsErrorHandler = function() {
+  console.log("Google maps api failed to load");
+  var errorContent = "<h1> Hello User! </h1>" + "<h2>The map did not load properly, please refresh and try again.</h2>";
+  $('#map').html(errorContent);
+};
+
+
 // Set up the ViewModel
 var ViewModel = function() {
 
@@ -35,49 +97,6 @@ var ViewModel = function() {
   self.filteredVenueList = ko.observableArray([]);
   // List Filter
   self.filter = ko.observable('');
-
-  // Create the google map zoomed in on Williamsburg BK upon initialization
-  self.initialize = function() {
-    // Initialize Google Maps
-    map = new google.maps.Map(document.getElementById('map'), {
-      center: {lat: 40.708116, lng: -73.957070}, // Williamsburg Brooklyn NYC
-      zoom: 12,
-      mapTypeControl: true,
-        mapTypeControlOptions: {
-          style: google.maps.MapTypeControlStyle.DROPDOWN_MENU,
-          position: google.maps.ControlPosition.TOP_RIGHT,
-          mapTypeIds: ['roadmap', 'terrain', 'styled_tron', 'styled_vibrant']
-        }
-    });
-    // Custom Tron Style
-    var stylesTron = new google.maps.StyledMapType([{"featureType":"all","elementType":"labels","stylers":[{"visibility":"off"}]},{"featureType":"all","elementType":"labels.text.fill","stylers":[{"saturation":36},{"color":"#000000"},{"lightness":40}]},{"featureType":"all","elementType":"labels.text.stroke","stylers":[{"visibility":"off"},{"color":"#000000"},{"lightness":16}]},{"featureType":"all","elementType":"labels.icon","stylers":[{"visibility":"off"}]},{"featureType":"administrative","elementType":"geometry.fill","stylers":[{"color":"#000000"},{"lightness":20}]},{"featureType":"administrative","elementType":"geometry.stroke","stylers":[{"color":"#000000"},{"lightness":17},{"weight":1.2}]},{"featureType":"administrative","elementType":"labels","stylers":[{"visibility":"on"}]},{"featureType":"landscape","elementType":"geometry","stylers":[{"color":"#000000"},{"lightness":20}]},{"featureType":"landscape","elementType":"labels","stylers":[{"visibility":"off"}]},{"featureType":"landscape.man_made","elementType":"labels","stylers":[{"visibility":"off"}]},{"featureType":"landscape.natural","elementType":"labels","stylers":[{"visibility":"off"}]},{"featureType":"landscape.natural.landcover","elementType":"labels","stylers":[{"visibility":"off"}]},{"featureType":"landscape.natural.terrain","elementType":"labels","stylers":[{"visibility":"off"}]},{"featureType":"poi","elementType":"geometry","stylers":[{"color":"#000000"},{"lightness":21}]},{"featureType":"poi","elementType":"labels","stylers":[{"visibility":"off"}]},{"featureType":"road","elementType":"geometry","stylers":[{"color":"#00ffff"}]},{"featureType":"road","elementType":"labels","stylers":[{"visibility":"off"}]},{"featureType":"road.highway","elementType":"geometry","stylers":[{"color":"#00fbff"}]},{"featureType":"road.highway","elementType":"geometry.fill","stylers":[{"color":"#000000"},{"lightness":17}]},{"featureType":"road.highway","elementType":"geometry.stroke","stylers":[{"color":"#000000"},{"lightness":29},{"weight":0.2}]},{"featureType":"road.highway","elementType":"labels","stylers":[{"visibility":"off"}]},{"featureType":"road.highway.controlled_access","elementType":"labels","stylers":[{"visibility":"off"}]},{"featureType":"road.arterial","elementType":"geometry","stylers":[{"color":"#00fffb"},{"lightness":18}]},{"featureType":"road.arterial","elementType":"labels","stylers":[{"visibility":"off"}]},{"featureType":"road.local","elementType":"geometry","stylers":[{"color":"#00ffff"},{"lightness":16}]},{"featureType":"road.local","elementType":"labels","stylers":[{"visibility":"off"}]},{"featureType":"transit","elementType":"geometry","stylers":[{"color":"#000000"},{"lightness":19},{"visibility":"off"}]},{"featureType":"transit","elementType":"labels","stylers":[{"visibility":"off"}]},{"featureType":"transit.line","elementType":"geometry","stylers":[{"visibility":"off"}]},{"featureType":"transit.line","elementType":"labels","stylers":[{"visibility":"off"}]},{"featureType":"transit.station","elementType":"labels","stylers":[{"visibility":"on"}]},{"featureType":"water","elementType":"geometry","stylers":[{"color":"#000303"},{"lightness":17}]},{"featureType":"water","elementType":"labels","stylers":[{"visibility":"off"}]}],{name:'Tron'});
-    // Custom Vibrant Style
-    var stylesVibrant = new google.maps.StyledMapType([{featureType:"water",stylers:[{color:"#19a0d8"}]},{featureType:"administrative",elementType:"labels.text.stroke",stylers:[{color:"#ffffff"},{weight:6}]},{featureType:"administrative",elementType:"labels.text.fill",stylers:[{color:"#e85113"}]},{featureType:"road.highway",elementType:"geometry.stroke",stylers:[{color:"#efe9e4"},{lightness:-40}]},{featureType:"transit.station",stylers:[{weight:9},{hue:"#e85113"}]},{featureType:"road.highway",elementType:"labels.icon",stylers:[{visibility:"off"}]},{featureType:"water",elementType:"labels.text.stroke",stylers:[{lightness:100}]},{featureType:"water",elementType:"labels.text.fill",stylers:[{lightness:-100}]},{featureType:"poi",elementType:"geometry",stylers:[{visibility:"on"},{color:"#f0e4d3"}]},{featureType:"road.highway",elementType:"geometry.fill",stylers:[{color:"#efe9e4"},{lightness:-25}]}],{name:'Vibrant'});
-
-    // Tron styles
-    map.mapTypes.set('styled_tron', stylesTron);
-    map.setMapTypeId('styled_tron');
-    // Vibrant styles
-    map.mapTypes.set('styled_vibrant', stylesVibrant);
-    map.setMapTypeId('styled_vibrant');
-
-    var trafficLayer = new google.maps.TrafficLayer();
-
-    // Toggle traffic layer
-    document.getElementById('toggle-traffic').addEventListener('click', function() {
-      toggleTraffic();
-    });
-
-    toggleTraffic = function() {
-      //Traffic layer
-      if (trafficLayer.getMap() == null) {
-        trafficLayer.setMap(map);
-      } else {
-        trafficLayer.setMap(null);
-      }
-    };
-  };
-
 
   // Create the list of venueLocations from the model.js file
   self.buildVenueLocations = function() {
@@ -330,8 +349,11 @@ var ViewModel = function() {
         // $('#yelp-review').html(yelpBusinessVenue.yelpReview);
       },
       error: function() {
+        // InfoWindow Error Handling
         console.log('YELP Search API Error Status: ' + status );
-        infoWindow.setContent('Error, could not load content');
+        infoWindow.setContent('<div class="infoWindow-styling">' +
+                                '<p>Error, could not load content</p>' +
+                              '</div>');
       }
     };
 
@@ -416,7 +438,6 @@ var ViewModel = function() {
 
   // Add the listener for loading the page
   google.maps.event.addDomListener(window, 'load', function() {
-    self.initialize();
     self.buildVenueLocations();
     self.setVenueClickFunctions();
     self.filteredVenueList(self.venueList());

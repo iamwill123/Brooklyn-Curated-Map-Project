@@ -55,7 +55,7 @@
                   <i class="material-icons">search</i>
                 </label>
                 <div class="mdl-textfield__expandable-holder">
-                  <input data-bind="fadein:1000, textInput: filter, value: filter, valueUpdate: 'afterkeydown'" class="mdl-textfield__input" type="text" id="search" placeholder="Where to?" id="search" name="sample">
+                  <input data-bind="fadein:1000, textInput: filter, value: filter" class="mdl-textfield__input" type="text" placeholder="Where to?" id="search" name="sample">
                   <label class="mdl-textfield__label" for="search" ></label>
                 </div>
               </div>
@@ -107,7 +107,7 @@
     </div>
 
     <!-- Google Maps -->
-    <main id="map" class="mdl-layout__content mdl-color--grey-100"">
+    <main id="map" class="mdl-layout__content mdl-color--grey-100">
       <div class="mdl-grid main-content">
       </div>
     </main>
@@ -124,31 +124,8 @@
   <script src="js/model.js"></script>
   <script src="js/app.js"></script>
 
-  <script>
-    var map, infoWindow;
-    // API is working
-    function googleSuccess() {
-      console.log("Google maps api loaded");
-
-      infoWindow = new google.maps.InfoWindow({
-        maxWidth: 400,
-        maxHeight: 570
-      });
-
-      // Start your engines
-      ko.applyBindings( new ViewModel() );
-    }
-
-    // Error handling
-    function googleError() {
-      console.log("Google maps api failed to load");
-      var errorContent = "<h1> Hello User! </h1>" + "<h2>The map did not load properly, please refresh and try again.</h2>";
-      $('#map').html(errorContent);
-    }
-  </script>
-
   <!-- Google Maps -->
-  <script src="https://maps.googleapis.com/maps/api/js?&libraries=places&key=AIzaSyCy8Llw3Mlcq_qv-KEOMxOogvWs2IXeGxo&callback=googleSuccess" onerror="googleError()" async defer></script>
+  <script src="https://maps.googleapis.com/maps/api/js?&libraries=places&key=AIzaSyCy8Llw3Mlcq_qv-KEOMxOogvWs2IXeGxo&callback=initMaps" onerror="mapsErrorHandler()" async defer></script>
 
 </body>
 </html>

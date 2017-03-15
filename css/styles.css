@@ -6,7 +6,8 @@
 /*
     Customize Material Design Lite
 */
-html, body {
+html,
+body {
   font-family: 'Roboto', 'Helvetica', sans-serif;
   height: 100%;
   margin: 0;
