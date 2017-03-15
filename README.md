@@ -29,7 +29,7 @@ All code is provided under the MIT license.
 
 ### The App Overview
 
-### How to run the App on your local machine
+#### How to run the App on your local machine
 Very easy, all you do is clone the repo or download the zip, then navigate to the index.html and double-click.
 I recommend changing all the existing credentials to you own credentials, i.e. google maps key, and the yelp api keys.
 
