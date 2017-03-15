@@ -1,27 +1,27 @@
 
 // Javascript slider
-var slideIndex = 1;
-function plusDivs(n) {
-  showDivs(slideIndex += n);
-}
-function currentDiv(n) {
-  showDivs(slideIndex = n);
-}
-function showDivs(n) {
-  var i;
-  var x = document.getElementsByClassName("mySlides");
-  var dots = document.getElementsByClassName("dots");
-  if (n > x.length) {slideIndex = 1}
-  if (n < 1) {slideIndex = x.length}
-  for (i = 0; i < x.length; i++) {
-     x[i].style.display = "none";
-  }
-  for (i = 0; i < dots.length; i++) {
-     dots[i].className = dots[i].className.replace(" w3-white", "");
-  }
-  x[slideIndex-1].style.display = "block";
-  dots[slideIndex-1].className += " w3-white";
-}
+// var slideIndex = 1;
+// function plusDivs(n) {
+//   showDivs(slideIndex += n);
+// }
+// function currentDiv(n) {
+//   showDivs(slideIndex = n);
+// }
+// function showDivs(n) {
+//   var i;
+//   var x = document.getElementsByClassName("mySlides");
+//   var dots = document.getElementsByClassName("dots");
+//   if (n > x.length) {slideIndex = 1}
+//   if (n < 1) {slideIndex = x.length}
+//   for (i = 0; i < x.length; i++) {
+//      x[i].style.display = "none";
+//   }
+//   for (i = 0; i < dots.length; i++) {
+//      dots[i].className = dots[i].className.replace(" w3-white", "");
+//   }
+//   x[slideIndex-1].style.display = "block";
+//   dots[slideIndex-1].className += " w3-white";
+// }
 
 // Set up the ViewModel
 var ViewModel = function() {
@@ -53,8 +53,6 @@ var ViewModel = function() {
     var stylesTron = new google.maps.StyledMapType([{"featureType":"all","elementType":"labels","stylers":[{"visibility":"off"}]},{"featureType":"all","elementType":"labels.text.fill","stylers":[{"saturation":36},{"color":"#000000"},{"lightness":40}]},{"featureType":"all","elementType":"labels.text.stroke","stylers":[{"visibility":"off"},{"color":"#000000"},{"lightness":16}]},{"featureType":"all","elementType":"labels.icon","stylers":[{"visibility":"off"}]},{"featureType":"administrative","elementType":"geometry.fill","stylers":[{"color":"#000000"},{"lightness":20}]},{"featureType":"administrative","elementType":"geometry.stroke","stylers":[{"color":"#000000"},{"lightness":17},{"weight":1.2}]},{"featureType":"administrative","elementType":"labels","stylers":[{"visibility":"on"}]},{"featureType":"landscape","elementType":"geometry","stylers":[{"color":"#000000"},{"lightness":20}]},{"featureType":"landscape","elementType":"labels","stylers":[{"visibility":"off"}]},{"featureType":"landscape.man_made","elementType":"labels","stylers":[{"visibility":"off"}]},{"featureType":"landscape.natural","elementType":"labels","stylers":[{"visibility":"off"}]},{"featureType":"landscape.natural.landcover","elementType":"labels","stylers":[{"visibility":"off"}]},{"featureType":"landscape.natural.terrain","elementType":"labels","stylers":[{"visibility":"off"}]},{"featureType":"poi","elementType":"geometry","stylers":[{"color":"#000000"},{"lightness":21}]},{"featureType":"poi","elementType":"labels","stylers":[{"visibility":"off"}]},{"featureType":"road","elementType":"geometry","stylers":[{"color":"#00ffff"}]},{"featureType":"road","elementType":"labels","stylers":[{"visibility":"off"}]},{"featureType":"road.highway","elementType":"geometry","stylers":[{"color":"#00fbff"}]},{"featureType":"road.highway","elementType":"geometry.fill","stylers":[{"color":"#000000"},{"lightness":17}]},{"featureType":"road.highway","elementType":"geometry.stroke","stylers":[{"color":"#000000"},{"lightness":29},{"weight":0.2}]},{"featureType":"road.highway","elementType":"labels","stylers":[{"visibility":"off"}]},{"featureType":"road.highway.controlled_access","elementType":"labels","stylers":[{"visibility":"off"}]},{"featureType":"road.arterial","elementType":"geometry","stylers":[{"color":"#00fffb"},{"lightness":18}]},{"featureType":"road.arterial","elementType":"labels","stylers":[{"visibility":"off"}]},{"featureType":"road.local","elementType":"geometry","stylers":[{"color":"#00ffff"},{"lightness":16}]},{"featureType":"road.local","elementType":"labels","stylers":[{"visibility":"off"}]},{"featureType":"transit","elementType":"geometry","stylers":[{"color":"#000000"},{"lightness":19},{"visibility":"off"}]},{"featureType":"transit","elementType":"labels","stylers":[{"visibility":"off"}]},{"featureType":"transit.line","elementType":"geometry","stylers":[{"visibility":"off"}]},{"featureType":"transit.line","elementType":"labels","stylers":[{"visibility":"off"}]},{"featureType":"transit.station","elementType":"labels","stylers":[{"visibility":"on"}]},{"featureType":"water","elementType":"geometry","stylers":[{"color":"#000303"},{"lightness":17}]},{"featureType":"water","elementType":"labels","stylers":[{"visibility":"off"}]}],{name:'Tron'});
     // Custom Vibrant Style
     var stylesVibrant = new google.maps.StyledMapType([{featureType:"water",stylers:[{color:"#19a0d8"}]},{featureType:"administrative",elementType:"labels.text.stroke",stylers:[{color:"#ffffff"},{weight:6}]},{featureType:"administrative",elementType:"labels.text.fill",stylers:[{color:"#e85113"}]},{featureType:"road.highway",elementType:"geometry.stroke",stylers:[{color:"#efe9e4"},{lightness:-40}]},{featureType:"transit.station",stylers:[{weight:9},{hue:"#e85113"}]},{featureType:"road.highway",elementType:"labels.icon",stylers:[{visibility:"off"}]},{featureType:"water",elementType:"labels.text.stroke",stylers:[{lightness:100}]},{featureType:"water",elementType:"labels.text.fill",stylers:[{lightness:-100}]},{featureType:"poi",elementType:"geometry",stylers:[{visibility:"on"},{color:"#f0e4d3"}]},{featureType:"road.highway",elementType:"geometry.fill",stylers:[{color:"#efe9e4"},{lightness:-25}]}],{name:'Vibrant'});
-    //Traffic layer
-    var trafficLayer = new google.maps.TrafficLayer();
 
     // Tron styles
     map.mapTypes.set('styled_tron', stylesTron);
@@ -63,19 +61,23 @@ var ViewModel = function() {
     map.mapTypes.set('styled_vibrant', stylesVibrant);
     map.setMapTypeId('styled_vibrant');
 
+    var trafficLayer = new google.maps.TrafficLayer();
+
     // Toggle traffic layer
     document.getElementById('toggle-traffic').addEventListener('click', function() {
       toggleTraffic();
     });
 
-    function toggleTraffic() {
+    toggleTraffic = function() {
+      //Traffic layer
       if (trafficLayer.getMap() == null) {
         trafficLayer.setMap(map);
       } else {
         trafficLayer.setMap(null);
       }
-    }
+    };
   };
+
 
   // Create the list of venueLocations from the model.js file
   self.buildVenueLocations = function() {
@@ -96,53 +98,53 @@ var ViewModel = function() {
   // Function to handle clicking on a venue (either in list or marker)
   self.venueClick = function(venue) {
 
-    self.getYelpData(venue);
-    self.getGoogleMapsData(venue);
+
 
     // Custom slideshow controls: https://www.w3schools.com/w3css/w3css_slideshow.asp
-    var galleryControls = '<div class="w3-center w3-display-bottommiddle" style="width:100%">' +
-                              '<div class="w3-left w3-padding-left w3-hover-text" onclick="plusDivs(-1)">&#10094;</div>' +
-                              '<div class="w3-right w3-padding-right w3-hover-text" onclick="plusDivs(1)">&#10095;</div>' +
-                              '<div id="w3-dots"></div>' +
-                            '</div>';
+    // var galleryControls = '<div class="w3-center w3-display-bottommiddle" style="width:100%">' +
+    //                           '<div class="w3-left w3-padding-left w3-hover-text" onclick="plusDivs(-1)">&#10094;</div>' +
+    //                           '<div class="w3-right w3-padding-right w3-hover-text" onclick="plusDivs(1)">&#10095;</div>' +
+    //                           '<div id="w3-dots"></div>' +
+    //                         '</div>';
     // Set the content of the infoWindow
-    var infoContent = '<div class="infoWindow-styling">' +
-                        '<div class="venue-header" id="venue-name">' + venue.name() + '</div>' +
-                        '<div class="content-left">' +
-                          '<img class="yelp-thumb-image" id="yelp-image">' +
-                        '</div>' +
-                        '<div class="content-right">' +
-                          '<p>' +
-                            '<span class="yelp-rating-image"><img id="yelp-rating"></span>' +
-                            '<span class="yelp-rating-count" id="yelp-rating-count"></span>' +
-                          '</p>' +
-                          '<div class="cta-url">' +
-                            '<span><a class="yelp-website" id="yelp-url" target="_blank">YELP</a></span> ' +
-                            '<span><a class="business-website" id="business-website" target="_blank">WEBSITE</a></span> ' +
-                          '</div>' +
-                          '<p class="venue-neighborhood" id="venue-neighborhood">Hood? ' + venue.neighborhood() + '</p>' +
-                          '<p class="venue-address" id="venue-address">' + venue.address() + '</p>' +
-                        '</div>' +
-                        '<div class="content-fill">' +
-                          '<p class="yelp-about" id="yelp-about-snippet"></p>' +
+    // var infoContent =
+                      // '<div class="infoWindow-styling">' +
+                      //   '<div class="venue-header" id="venue-name">' + venue.name() + '</div>' +
+                      //   '<div class="content-left">' +
+                      //     '<img class="yelp-thumb-image" id="yelp-image" src="' + yelpBusinessVenue.image_url + '">' +
+                      //   '</div>' +
+                      //   '<div class="content-right">' +
+                      //     '<p>' +
+                      //       '<span class="yelp-rating-image"><img id="yelp-rating" src="' + yelpRating + '"></span>' +
+                      //       '<span class="yelp-rating-count" id="yelp-rating-count">' + yelpRatingCount + '</span>' +
+                      //     '</p>' +
+                      //     '<div class="cta-url">' +
+                      //       '<span><a class="yelp-website" id="yelp-url" target="_blank">YELP href="' + yelpURL + '"</a></span> ' +
+                      //       '<span><a class="business-website" id="business-website" target="_blank">WEBSITE</a></span> ' +
+                      //     '</div>' +
+                      //     '<p class="venue-neighborhood" id="venue-neighborhood">Hood? ' + venue.neighborhood() + '</p>' +
+                      //     '<p class="venue-address" id="venue-address">' + venue.address() + '</p>' +
+                      //   '</div>' +
+                      //   '<div class="content-fill">' +
+                      //     '<p class="yelp-about" id="yelp-about-snippet">' + yelpAboutSnippet + '</p>' +
                           // '<p class="yelp-reviews" id="yelp-review"></p>' +
-                          '<div class="w3-content w3-display-container">' +
-                            '<div class="image-gallery" id="image-gallery">' +
-                              galleryControls + '</div>' +
-                          '</div>' +
-                          '<div class="google-directions" id="google-directions">' +
-                            '<input id="search-text" type="text" placeholder="Take me here! Enter origin address" autocomplete="off">' +
-                            '<select id="mode">' +
-                              '<option value="TRANSIT">Transit</option>' +
-                              '<option value="DRIVING">Drive</option>' +
-                              '<option value="WALKING">Walk</option>' +
-                              '<option value="BICYCLING">Bike</option>' +
-                            '</select>' +
-                          '</div>' +
-                        '</div>' +
-                      '</div>';
+                      //     '<div class="w3-content w3-display-container">' +
+                      //       '<div class="image-gallery" id="image-gallery">' +
+                      //         galleryControls + '</div>' +
+                      //     '</div>' +
+                      //     // '<div class="google-directions" id="google-directions">' +
+                      //     //   '<input id="search-text" type="text" placeholder="Take me here! Enter origin address" autocomplete="off">' +
+                      //     //   '<select id="mode">' +
+                      //     //     '<option value="TRANSIT">Transit</option>' +
+                      //     //     '<option value="DRIVING">Drive</option>' +
+                      //     //     '<option value="WALKING">Walk</option>' +
+                      //     //     '<option value="BICYCLING">Bike</option>' +
+                      //     //   '</select>' +
+                      //     // '</div>' +
+                      //   '</div>' +
+                      // '</div>';
 
-    infoWindow.setContent(infoContent);
+    // infoWindow.setContent(yelpContent + infoContent);
 
     // Open the infoWindow at the marker location
     infoWindow.open(map, venue.marker());
@@ -157,34 +159,41 @@ var ViewModel = function() {
     map.setZoom(13);
     map.panBy(0, -250);
 
+    // self.getGoogleMapsData(venue);
+    self.getYelpData(venue);
+
+
     // Autocomplete for the search box
-    var timeAutocomplete = new google.maps.places.Autocomplete(document.getElementById('search-text'));
+    // var timeAutocomplete = new google.maps.places.Autocomplete(document.getElementById('search-text'));
 
     // Initialize Direction Service & Display
-    var directionsService = new google.maps.DirectionsService;
-    var directionsDisplay = new google.maps.DirectionsRenderer;
+    // var directionsService = new google.maps.DirectionsService;
+    // var directionsDisplay = new google.maps.DirectionsRenderer;
 
-    var onChangeHandler = function() {
-      self.displayGoogleDirections(venue, directionsService, directionsDisplay);
-    };
+    // var onChangeHandler = function() {
+    //   self.displayGoogleDirections(venue, directionsService, directionsDisplay);
+    // };
 
     // Add a listener for mode and search-text
-    document.getElementById('mode').addEventListener('change', onChangeHandler);
-    document.getElementById('search-text').addEventListener('keypress', function(e) {
-      if (13 == e.keyCode) { onChangeHandler(); } //if enter key
-    });
+    // document.getElementById('mode').addEventListener('change', onChangeHandler);
+    // document.getElementById('search-text').addEventListener('keypress', function(e) {
+    //   if (13 == e.keyCode) { onChangeHandler(); } //if enter key
+    // });
 
     // Clear directions route after closing infoWindow
-    var iwOuter = $('.gm-style-iw');
-    var iwCloseBtn = iwOuter.next();
-    iwCloseBtn.on( "click", function() {
-        directionsDisplay.setMap(null);
-    });
+    // infoWindow.addListener('closeclick', function() {
+    //   directionsDisplay.setMap(null);
+    // });
 
-    var venueListNav = $('.mdl-navigation__link');
-    venueListNav.on( "click", function() {
-        directionsDisplay.setMap(null);
-    });
+    // Clear directions route after Opening new infoWindow
+    // infoWindow.addListener('openclick', function() {
+    //   directionsDisplay.setMap(null);
+    // });
+
+    // var venueListNav = $('.mdl-navigation__link');
+    // venueListNav.on( "click", function() {
+    //     directionsDisplay.setMap(null);
+    // });
 
     // Current venue marker bounces once when clicked
     self.setMarkerAnimation(venue);
@@ -193,8 +202,9 @@ var ViewModel = function() {
   // Sets the currenter marker to bounce once when clicked
   self.setMarkerAnimation = function(venue) {
     venue.marker().setAnimation(google.maps.Animation.BOUNCE);
-    setTimeout( function() { venue.marker().setAnimation(null); }, 750);
+    setTimeout( function() { venue.marker().setAnimation(null); }, 1400); //bounce 2x
   };
+
 
   self.filterVenues = ko.computed(function(venue) {
     self.filteredVenueList([]);
@@ -269,25 +279,59 @@ var ViewModel = function() {
 
         var yelpBusinessVenue = response.businesses[0];
 
+       // var galleryControls = '<div class="w3-center w3-display-bottommiddle" style="width:100%">' +
+       //                      '<div class="w3-left w3-padding-left w3-hover-text" onclick="plusDivs(-1)">&#10094;</div>' +
+       //                      '<div class="w3-right w3-padding-right w3-hover-text" onclick="plusDivs(1)">&#10095;</div>' +
+       //                      '<div id="w3-dots"></div>' +
+       //                    '</div>';
+
+        var yelpContent = '<div class="infoWindow-styling">' +
+                            '<div class="venue-header" id="venue-name">' + venue.name() + '</div>' +
+                            '<div class="content-left">' +
+                              '<img class="yelp-thumb-image" id="yelp-image" src="' + yelpBusinessVenue.image_url + '">' +
+                            '</div>' +
+                            '<div class="content-right">' +
+                              '<p>' +
+                                '<span class="yelp-rating-image"><img id="yelp-rating" src="' + yelpBusinessVenue.rating_img_url + '"></span>' +
+                                '<span class="yelp-rating-count" id="yelp-rating-count">' + yelpBusinessVenue.review_count + '</span>' +
+                              '</p>' +
+                              '<div class="cta-url">' +
+                                '<span><a class="yelp-website" id="yelp-url" target="_blank" href="' + yelpBusinessVenue.url + '">YELP</a></span> ' +
+                                // '<span><a class="business-website" id="business-website" target="_blank">WEBSITE</a></span> ' +
+                              '</div>' +
+                              '<p class="venue-neighborhood" id="venue-neighborhood">Hood? ' + venue.neighborhood() + '</p>' +
+                              '<p class="venue-address" id="venue-address">' + venue.address() + '</p>' +
+                            '</div>' +
+                            '<div class="content-fill">' +
+                              '<p class="yelp-about" id="yelp-about-snippet">' + yelpBusinessVenue.snippet_text + '</p>' +
+                              // '<div class="w3-content w3-display-container">' +
+                              //   '<div class="image-gallery" id="image-gallery">' +
+                              //     galleryControls + '</div>' +
+                              // '</div>' +
+                            '</div>' +
+                          '</div>';
+
+        infoWindow.setContent(yelpContent);
+
         //Yelp Business Image
-        $('#yelp-image').attr('src', yelpBusinessVenue.image_url);
+        // $('#yelp-image').attr('src', yelpBusinessVenue.image_url);
 
-        // Yelp Rating stars and total rating count
-        $('#yelp-rating').attr('src', yelpBusinessVenue.rating_img_url);
-        $('#yelp-rating-count').html(' ' + yelpBusinessVenue.review_count + ' reviews');
+        // // Yelp Rating stars and total rating count
+        // $('#yelp-rating').attr('src', yelpBusinessVenue.rating_img_url);
+        // $('#yelp-rating-count').html(' ' + yelpBusinessVenue.review_count + ' reviews');
 
-        // Yelp Business URL
-        $('#yelp-url').attr('href', yelpBusinessVenue.url);
+        // // Yelp Business URL
+        // $('#yelp-url').attr('href', yelpBusinessVenue.url);
 
-        //Yelp Business Snippet info
-        $('#yelp-about-snippet').html('"' + yelpBusinessVenue.snippet_text + '"');
+        // //Yelp Business Snippet info
+        // $('#yelp-about-snippet').html('"' + yelpBusinessVenue.snippet_text + '"');
 
         //Yelp Business Review
         // $('#yelp-review').html(yelpBusinessVenue.yelpReview);
       },
       error: function() {
         console.log('YELP Search API Error Status: ' + status );
-        $('#text').html('Data could not be retrieved from yelp.');
+        infoWindow.setContent('Error, could not load content');
       }
     };
 
@@ -296,77 +340,79 @@ var ViewModel = function() {
   };
 
   //Calls google maps places api for place data.
-  self.getGoogleMapsData = function(venue) {
-    // Get place data from Google Places Library
-    var service = new google.maps.places.PlacesService(map);
+  // self.getGoogleMapsData = function(venue) {
+  //   // Get place data from Google Places Library
+  //   var service = new google.maps.places.PlacesService(map);
 
-    //Grab pid from model data
-    // venueLocations.forEach(function(venue, index) {
-      // Google Maps API request
-      var request = venue.pid();
-      service.getDetails(request,
-        function(place, status) {
-          if (status !== google.maps.places.PlacesServiceStatus.OK) {
-            console.error('Google API Places Request: ' + status);
-            return;
-          }
+  //   //Grab pid from model data
+  //   // venueLocations.forEach(function(venue, index) {
+  //     // Google Maps API request
+  //     var request = venue.pid();
+  //     service.getDetails(request,
+  //       function(place, status) {
+  //         if (status !== google.maps.places.PlacesServiceStatus.OK) {
+  //           console.error('Google API Places Request: ' + status);
+  //           return;
+  //         }
 
-          $('#business-website').attr('href', place.website);
+  //         $('#business-website').attr('href', place.website);
 
-          if (place.photos) {
-            // innerHTML += '<img class="gm-content mySlides" src=' + '"' + place.photos[0].getUrl({'maxHeight': 200, maxWidth: 200}) + '" style="margin:1rem auto;">';
-            $(place.photos).each(function(i) {
-              $('#image-gallery').append(function() {
-                var innerHTML = '<img class="gm-content mySlides w3-round" data-scale="best-fit-down" data-align="center" src="' +
-                             place.photos[i].getUrl({'maxHeight': 200, 'maxWidth': 200}) +
-                             '" style="margin:1rem auto;">';
-                return innerHTML;
-              });
-              console.log('there are:' + place.photos.length + ' photos total');
+  //         if (place.photos) {
+  //           // innerHTML += '<img class="gm-content mySlides" src=' + '"' + place.photos[0].getUrl({'maxHeight': 200, maxWidth: 200}) + '" style="margin:1rem auto;">';
+  //           $(place.photos).each(function(i) {
+  //             $('#image-gallery').append(function() {
+  //               var innerHTML = '<img class="gm-content mySlides w3-round" data-scale="best-fit-down" data-align="center" src="' +
+  //                            place.photos[i].getUrl({'maxHeight': 200, 'maxWidth': 200}) +
+  //                            '" style="margin:1rem auto;">';
+  //               return innerHTML;
+  //             });
+  //             console.log('there are:' + place.photos.length + ' photos total');
 
-              $('#w3-dots').append(function() {
-                var dots = '<span class="w3-badge dots w3-border w3-transparent w3-hover-white" onclick="currentDiv(' + (i+1) + ')"></span>';
-                return dots;
-              });
-            });
-          }
-          showDivs(slideIndex);
-          console.log('Google API Places Request: ' + status);
-        });
-    // });
-  };
+  //             $('#w3-dots').append(function() {
+  //               var dots = '<span class="w3-badge dots w3-border w3-transparent w3-hover-white" onclick="currentDiv(' + (i+1) + ')"></span>';
+  //               return dots;
+  //             });
+  //           });
+  //         }
+  //         showDivs(slideIndex);
+  //         console.log('Google API Places Request: ' + status);
+  //       });
+  //   // });
+  // };
 
   // Display google maps directions using user input address
-  self.displayGoogleDirections = function(venue, directionsService, directionsDisplay) {
-      directionsDisplay.setMap(map);
-      // Get origin address from user input
-      var originAddress = document.getElementById('search-text').value;
-      // Get mode value from the user entered value.
-      var mode = document.getElementById('mode').value;
+  // self.displayGoogleDirections = function(venue, directionsService, directionsDisplay) {
+  //     directionsDisplay.setMap(map);
+  //     // Get origin address from user input
+  //     var originAddress = document.getElementById('search-text').value;
+  //     // Get mode value from the user entered value.
+  //     var mode = document.getElementById('mode').value;
 
-      directionsService.route({
-        origin: originAddress, // The origin is the user entered address.
-        destination: venue.address(), // The destination is the passed in venue address according to marker click.
-        travelMode: google.maps.TravelMode[mode] // value from mode selected by user.
-      },
-      function(response, status) {
-        if (status === google.maps.DirectionsStatus.OK) {
-          directionsDisplay.setDirections(response);
+  //     directionsService.route({
+  //       origin: originAddress, // The origin is the user entered address.
+  //       destination: venue.address(), // The destination is the passed in venue address according to marker click.
+  //       travelMode: google.maps.TravelMode[mode] // value from mode selected by user.
+  //     },
+  //     function(response, status) {
+  //       console.log('Google Directions Status:' + status);
 
-          // directionsDisplay.DirectionsRenderer({
-          //     map: map,
-          //     // panel: directionsPanel,
-          //     directions: response,
-          //     draggable: true,
-          //     polylineOptions: {
-          //       strokeColor: 'red'
-          //     }
-          //   });
-        } else {
-          window.alert('Directions request failed due to ' + status);
-        }
-      });
-  };
+  //       if (status === google.maps.DirectionsStatus.OK) {
+  //         directionsDisplay.setDirections(response);
+
+  //         // directionsDisplay.DirectionsRenderer({
+  //         //     map: map,
+  //         //     // panel: directionsPanel,
+  //         //     directions: response,
+  //         //     draggable: true,
+  //         //     polylineOptions: {
+  //         //       strokeColor: 'red'
+  //         //     }
+  //         //   });
+  //       } else {
+  //         window.alert('Directions request failed due to ' + status);
+  //       }
+  //     });
+  // };
 
   // Add the listener for loading the page
   google.maps.event.addDomListener(window, 'load', function() {
@@ -466,7 +512,6 @@ var Venue = function(data) {
   marker.addListener('mouseout', function() {
     this.setIcon(defaultIcon);
   });
-
   // Set the marker as a knockout observable
   self.marker = ko.observable(marker);
 };

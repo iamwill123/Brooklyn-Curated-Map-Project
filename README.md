@@ -1,7 +1,7 @@
 # Brooklyn Curated - Neighborhood Map Project
 ## Purpose: Udacity's Front End Web Development Nanodegree
 
-Live Demo site: [https://iamwill123.github.io/Brooklyn-Curated-Map-Project/]
+**Live** [Demo] (https://iamwill123.github.io/Brooklyn-Curated-Map-Project/)
 
 ### Overview
 A map of curated Brooklyn hotspots I have either visited or want to visit in Brooklyn NYC (Mainly Williamsburg area).
@@ -29,6 +29,10 @@ All code is provided under the MIT license.
 
 ### The App Overview
 
+### How to run the App on your local machine
+Very easy, all you do is clone the repo or download the zip, then navigate to the index.html and double-click.
+I recommend changing all the existing credentials to you own credentials, i.e. google maps key, and the yelp api keys.
+
 #### The Venue List
 The list of venue locations are generated from the model.js data file. The markers on the google maps are also generated from the lat-long data provided in the model.js file.
 
@@ -45,5 +49,11 @@ The toughest obstacles along the way was to figure out how to encorporate a func
 - Auto-text completion and upon enter key it will display the venue's infowindow.
 - A directions panel that activates when the directions api is used.
 - Use CSS or JS to calculate a reasonable distance between the header bar and infowindow.
+
+#### References:
+[Yelp API] (https://www.yelp.com/developers/documentation/v2/authentication)
+[Udacity Google Maps API course] (https://www.udacity.com/course/google-maps-apis--ud864)
+[KnockoutJS] (http://knockoutjs.com/)
+[Knockout PDF] (http://files.cnblogs.com/files/artech/knockout.pdf)
 
 
